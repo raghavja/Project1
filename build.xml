@@ -1,0 +1,41 @@
+<project name="Project 1" default="compile" basedir=".">
+    <description>
+        Build File
+    </description>
+
+    <property name="source.dir" location="src"></property>
+    <property name="build.dir" location="bin"></property>
+    <property name="dist.dir" location="dist"></property>
+    <property name="doc.dir" location="doc"></property>
+    <property name="test.dir" location="test"></property>
+
+    <target name="init" description="creates 'bin/dist/doc'">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${doc.dir}" />
+    </target>
+
+    <target name="clean" description="removes 'bin/dist/doc'">
+        <delete dir="${build.dir}" />
+        <delete dir="${dist.dir}" />
+        <delete dir="${doc.dir}" />
+        <delete>
+            <fileset defaultexcludes="no" dir="${source.dir}" includes="**/*~" />
+        </delete>
+    </target>
+
+    <target name="compile" depends="init" description="compile java sources">
+        <javac srcdir="${source.dir}" destdir="${build.dir}" excludes="${source.dir}/" />
+    </target>
+
+    <target name="dist" depends="compile" description="transforms 'bin/*.class' to a jar file in 'dist'">
+        <jar destfile="${dist.dir}/flight.jar" basedir="${build.dir}" />
+    </target>
+
+    <target name="doc" depends="init" description="generates HTML files in 'doc' directory">
+        <javadoc sourcepath="${source.dir}" destdir="${doc.dir}" />
+    </target>
+
+    <target name="test" description="runs JUnit tests"></target>
+
+</project>
