@@ -1,4 +1,4 @@
-<project name="Project 1" default="compile" basedir=".">
+<project name="Project 1" default="dist" basedir=".">
     <description>
         Build File
     </description>
@@ -7,7 +7,8 @@
     <property name="build.dir" location="bin"></property>
     <property name="dist.dir" location="dist"></property>
     <property name="doc.dir" location="doc"></property>
-    <property name="test.dir" location="test"></property>
+    <property name="tests.dir" location="test"></property>
+    <property name="lib.dir" location="lib"></property>
 
     <target name="init" description="creates 'bin/dist/doc'">
         <mkdir dir="${build.dir}" />
@@ -25,17 +26,42 @@
     </target>
 
     <target name="compile" depends="init" description="compile java sources">
-        <javac srcdir="${source.dir}" destdir="${build.dir}" excludes="${source.dir}/" />
+        <javac srcdir="${source.dir}" destdir="${build.dir}" includeantruntime="false" debug="on" />
     </target>
 
     <target name="dist" depends="compile" description="transforms 'bin/*.class' to a jar file in 'dist'">
-        <jar destfile="${dist.dir}/flight.jar" basedir="${build.dir}" />
+        <jar destfile="${dist.dir}/flight.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="SearchMap" />
+            </manifest>
+        </jar>
     </target>
 
     <target name="doc" depends="init" description="generates HTML files in 'doc' directory">
         <javadoc sourcepath="${source.dir}" destdir="${doc.dir}" />
     </target>
 
-    <target name="test" description="runs JUnit tests"></target>
+    <target name="junit" depends="compile">
+
+        <junit printsummary="yes" haltonfailure="no">
+
+
+            <classpath location="lib/junit-4.13-beta-3.jar" />
+            <classpath location="lib/hamcrest-core-1.3.jar" />
+
+            <classpath refid="test.path" />
+            <classpath location="${test.classes.dir}" />
+
+            <formatter type="xml" />
+            <formatter type="plain" />
+
+            <batchtest fork="yes" todir="${report.dir}">
+                <fileset dir="${test.dir}">
+                    <include name="**/*Test*.java" />
+                </fileset>
+            </batchtest>
+
+        </junit>
+    </target>
 
 </project>
