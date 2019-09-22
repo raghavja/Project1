@@ -25,6 +25,8 @@ public class SearchMap {
     
     /**
      * Reads input file
+     * @param input the input file
+     * @throws FileNotFoundException when invalid file passed as an argument to main
      */
     public static void readInput(File input) throws FileNotFoundException {
         Scanner scanner = new Scanner(input);
@@ -40,6 +42,7 @@ public class SearchMap {
 
     /**
      * Helper for reading input file
+     * @param line one line from the input file to be parsed
      */
     private static void readInputHelper(String line) {
         String[] lineData = line.split(" ");
@@ -66,6 +69,8 @@ public class SearchMap {
 
     /**
      * Writed output file
+     * @param output the output file
+     * @throws IOException when invalid file passed as an argument to main
      */
     public static void writeOutput(File output) throws IOException {
         FileWriter writer = new FileWriter(output);
@@ -97,6 +102,7 @@ public class SearchMap {
 
     /**
      * Main method to run program
+     * @param args the arguments for the main function
      */
     public static void main(String[] args) {
         SearchMap searchMap = new SearchMap();

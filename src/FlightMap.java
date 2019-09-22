@@ -11,6 +11,10 @@ import java.util.Scanner;
 public class FlightMap {
     /**
      * Method to determine the path between the origin and a destination city
+     * @param destinations the list of desintations
+     * @param origin the origin city
+     * @param result a map with key as the destination and value as the list containing the path
+     * @param flightInfo a map with key as a city and value as a list of its neighbors
      */
     public void parseFlightInfo(HashSet<String> destinations, Pair origin,HashMap<String, ArrayList<Pair>> result, HashMap<String, ArrayList<Pair>> flightInfo) {
         for (String dest : destinations) {
@@ -26,6 +30,10 @@ public class FlightMap {
 
     /**
      * Helper method to determine the path between the origin and a destination city
+     * @param destinations the list of desintations
+     * @param origin the origin city
+     * @param result a map with key as the destination and value as the list containing the path
+     * @param flightInfo a map with key as a city and value as a list of its neighbors
      */
     private Boolean parseHelper(String start, String dest, ArrayList<Pair> solution, ArrayList<String> visited, HashMap<String, ArrayList<Pair>> flightInfo) {
         if (start.equals(dest)) {
