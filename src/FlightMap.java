@@ -9,7 +9,9 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class FlightMap {
-
+    /**
+     * Method to determine the path between the origin and a destination city
+     */
     public void parseFlightInfo(HashSet<String> destinations, Pair origin,HashMap<String, ArrayList<Pair>> result, HashMap<String, ArrayList<Pair>> flightInfo) {
         for (String dest : destinations) {
             ArrayList<Pair> solution = new ArrayList<Pair>();
@@ -22,6 +24,9 @@ public class FlightMap {
         }
     }
 
+    /**
+     * Helper method to determine the path between the origin and a destination city
+     */
     private Boolean parseHelper(String start, String dest, ArrayList<Pair> solution, ArrayList<String> visited, HashMap<String, ArrayList<Pair>> flightInfo) {
         if (start.equals(dest)) {
             return true;

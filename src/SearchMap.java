@@ -9,17 +9,23 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class SearchMap {
-    static Pair origin;
-    static HashSet<String> destinations;
-    static HashMap<String, ArrayList<Pair>> flightInfo;
-    static HashMap<String, ArrayList<Pair>> result;
+    static Pair origin; // origin city
+    static HashSet<String> destinations; // list of all the destination cities
+    static HashMap<String, ArrayList<Pair>> flightInfo; // map with key as a city and value as list of all its neighbors
+    static HashMap<String, ArrayList<Pair>> result; // map with key as a destination city and value as list of the path to it from the origin
 
+    /**
+     * Constructor for SearchMap
+     */
     public SearchMap() {
         destinations = new HashSet<String>();
         flightInfo = new HashMap<String, ArrayList<Pair>>();
         result = new HashMap<String, ArrayList<Pair>>();
     }
     
+    /**
+     * Reads input file
+     */
     public static void readInput(File input) throws FileNotFoundException {
         Scanner scanner = new Scanner(input);
         String originCity = scanner.nextLine();
@@ -32,6 +38,9 @@ public class SearchMap {
         destinations.remove(origin.city);
     }
 
+    /**
+     * Helper for reading input file
+     */
     private static void readInputHelper(String line) {
         String[] lineData = line.split(" ");
 
@@ -55,6 +64,9 @@ public class SearchMap {
         destinations.add(start);
     }
 
+    /**
+     * Writed output file
+     */
     public static void writeOutput(File output) throws IOException {
         FileWriter writer = new FileWriter(output);
         Iterator<String> it = result.keySet().iterator();
@@ -83,6 +95,9 @@ public class SearchMap {
         writer.close();
     }
 
+    /**
+     * Main method to run program
+     */
     public static void main(String[] args) {
         SearchMap searchMap = new SearchMap();
         FlightMap flightMap = new FlightMap();
