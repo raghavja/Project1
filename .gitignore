@@ -1,3 +1,7 @@
 .vscode
 .idea
 .txt
+.DS_Store
+doc
+bin
+dist
