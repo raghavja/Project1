@@ -45,6 +45,7 @@
 
     <target name="doc" depends="init" description="generates HTML files in 'doc' directory">
         <javadoc sourcepath="${source.dir}" destdir="${doc.dir}">
+            <classpath refid="classpath.test" />
             <fileset dir="." />
         </javadoc>
     </target>
