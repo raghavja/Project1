@@ -14,7 +14,7 @@ public class TestFlightMap {
         SearchMap searchMap = new SearchMap();
         FlightMap flightMap = new FlightMap();
 
-        File input = new File("testInput.txt");
+        File input = new File("tests/testInput.txt");
 
         try {
             searchMap.readInput(input);
@@ -25,12 +25,8 @@ public class TestFlightMap {
         flightMap.parseFlightInfo(searchMap.destinations, searchMap.origin, searchMap.result, searchMap.flightInfo);
 
         Iterator<String> it = searchMap.result.keySet().iterator();
-        while (it.hasNext()) {
-            String dest = it.next();
-            ArrayList<Pair> list = searchMap.result.get(dest);
-
-            assertTrue(list.contains(dest));
-            assertTrue(list.contains(searchMap.origin.city));
-        }
+        String dest = it.next();
+        ArrayList<Pair> list = searchMap.result.get(dest);
+        assertTrue(list.size() == 2);   
     }
 }
