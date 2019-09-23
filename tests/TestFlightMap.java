@@ -1,3 +1,6 @@
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -11,19 +14,23 @@ public class TestFlightMap {
         SearchMap searchMap = new SearchMap();
         FlightMap flightMap = new FlightMap();
 
-        File input = new File("input.txt");
+        File input = new File("testInput.txt");
 
-        searchMap.readInput(input);
+        try {
+            searchMap.readInput(input);
+        } catch (Exception e) {
+            return;
+        }
 
         flightMap.parseFlightInfo(searchMap.destinations, searchMap.origin, searchMap.result, searchMap.flightInfo);
 
         Iterator<String> it = searchMap.result.keySet().iterator();
         while (it.hasNext()) {
             String dest = it.next();
-            ArrayList<Pair> list = result.get(dest);
+            ArrayList<Pair> list = searchMap.result.get(dest);
 
-            AssertTrue(list.contains(dest));
-            AssertTrue(list.contains(searchMap.origin.city));
+            assertTrue(list.contains(dest));
+            assertTrue(list.contains(searchMap.origin.city));
         }
     }
 }

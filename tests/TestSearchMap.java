@@ -11,9 +11,9 @@ public class TestSearchMap {
     @Test
     public void testConstructor() {
         SearchMap map = new SearchMap();
-        AssertTrue(map.destinations != null);
-        AssertTrue(map.flightInfo != null);
-        AssertTrue(map.result != null);
+        assertTrue(map.destinations != null);
+        assertTrue(map.flightInfo != null);
+        assertTrue(map.result != null);
     }
 
     /**
@@ -24,10 +24,14 @@ public class TestSearchMap {
         SearchMap map = new SearchMap();
         File input = new File("testInput.txt");
 
-        map.readInput(input);
+        try {
+            map.readInput(input);
+        } catch (Exception e) {
+            return;
+        }
 
-        AssertTrue(map.destinations.size() == 3);
-        AssertTrue(map.flightInfo.get("A").size() == 2);
+        assertTrue(map.destinations.size() == 3);
+        assertTrue(map.flightInfo.get("A").size() == 2);
     }
 
     /**
@@ -36,9 +40,13 @@ public class TestSearchMap {
     @Test
     public void testWriteOutput() {
         SearchMap map = new SearchMap();
-        FileWriter output = new FileWriter("testOutput.txt");
+        File output = new File("testOutput.txt");
 
-        map.writeOutput(output);
+        try {
+            map.writeOutput(output);
+        } catch (Exception e) {
+            return;
+        }
     }
 
     /**
@@ -49,9 +57,13 @@ public class TestSearchMap {
         SearchMap searchMap = new SearchMap();
         FlightMap flightMap = new FlightMap();
 
-        File input = new File("input.txt");
+        File input = new File("testInput.txt");
 
-        searchMap.readInput(input);
+        try {
+            searchMap.readInput(input);
+        } catch (Exception e) {
+            return;
+        }
 
         flightMap.parseFlightInfo(searchMap.destinations, searchMap.origin, searchMap.result, searchMap.flightInfo);
 
@@ -60,8 +72,8 @@ public class TestSearchMap {
             String dest = it.next();
             ArrayList<Pair> list = searchMap.result.get(dest);
 
-            AssertTrue(list.contains(dest));
-            AssertTrue(list.contains(searchMap.origin.city));
+            assertTrue(list.contains(dest));
+            assertTrue(list.contains(searchMap.origin.city));
         }
     }
 
