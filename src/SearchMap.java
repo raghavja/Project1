@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * SearchMap class to read the input file and write to the ouput file after determining potential flight paths
+ */
 public class SearchMap {
     static Pair origin; // origin city
     static HashSet<String> destinations; // list of all the destination cities
@@ -64,7 +67,6 @@ public class SearchMap {
         flightInfo.put(start, list);
 
         destinations.add(dest);
-        destinations.add(start);
     }
 
     /**

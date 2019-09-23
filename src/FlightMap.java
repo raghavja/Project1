@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * FLightMap class to determine potential flight paths
+ */
 public class FlightMap {
     /**
      * Method to determine the path between the origin and a destination city
