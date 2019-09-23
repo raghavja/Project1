@@ -50,7 +50,9 @@
     </target>
 
     <target name="test" depends="compile">
-        <javac srcdir="${tests.dir}" destdir="${build.dir}" includeantruntime="false" debug="on" />
+        <javac srcdir="${tests.dir}" destdir="${build.dir}" includeantruntime="false" debug="on">
+            <classpath refid="classpath.test" />
+        </javac>
         <jar destfile="${dist.dir}/tests.jar" basedir="${build.dir}">
             <manifest>
                 <attribute name="Main-Class" value="TestFlightMap" />

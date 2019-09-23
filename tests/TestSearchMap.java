@@ -1,16 +1,10 @@
-import org.apache.commons.io.FileUtils;
-import org.junit.rules.TemporaryFolder;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestSearchMap {
-    /**
-     * Creates a temprary folder to store test files
-     */
-    @Rule
-    public TemporaryFolder folder= new TemporaryFolder();
-
     /**
      * Test the constructor
      */
@@ -28,13 +22,9 @@ public class TestSearchMap {
     @Test
     public void testReadInput() {
         SearchMap map = new SearchMap();
-        File createdFile= folder.newFile("testInput.txt");
-        FileUtils.writeStringToFile(createdFile, "X\n");
-        FileUtils.writeStringToFile(createdFile, "A B 200\n");
-        FileUtils.writeStringToFile(createdFile, "A C 100\n");
-        FileUtils.writeStringToFile(createdFile, "B X 120\n");
+        File input = new File("testInput.txt");
 
-        map.readInput(createdFile);
+        map.readInput(input);
 
         AssertTrue(map.destinations.size() == 3);
         AssertTrue(map.flightInfo.get("A").size() == 2);
@@ -46,11 +36,9 @@ public class TestSearchMap {
     @Test
     public void testWriteOutput() {
         SearchMap map = new SearchMap();
-        File createdFile= folder.newFile("testOutput.txt");
+        FileWriter output = new FileWriter("testOutput.txt");
 
-        map.writeOutput(createdFile);
-
-
+        map.writeOutput(output);
     }
 
     /**

@@ -17,8 +17,9 @@ public class TestFlightMap {
 
         flightMap.parseFlightInfo(searchMap.destinations, searchMap.origin, searchMap.result, searchMap.flightInfo);
 
-        Iterator<String> it = result.keySet().iterator();
+        Iterator<String> it = searchMap.result.keySet().iterator();
         while (it.hasNext()) {
+            String dest = it.next();
             ArrayList<Pair> list = result.get(dest);
 
             AssertTrue(list.contains(dest));
