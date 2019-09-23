@@ -3,17 +3,26 @@ import static org.junit.Assert.*;
 
 public class TestFlightMap {
 
-    @Test
-    public void testConstructor() {
-        FlightMap map = new FlightMap();
-        AssertTrue(map.destinations != null);
-        AssertTrue(map.flightInfo != null);
-        AssertTrue(map.result != null);
-    }
-
+    /**
+     * Function to test the parser in the FlightMap class
+     */
     @Test
     public void testParse() {
-       
-    }
+        SearchMap searchMap = new SearchMap();
+        FlightMap flightMap = new FlightMap();
 
+        File input = new File("input.txt");
+
+        searchMap.readInput(input);
+
+        flightMap.parseFlightInfo(searchMap.destinations, searchMap.origin, searchMap.result, searchMap.flightInfo);
+
+        Iterator<String> it = result.keySet().iterator();
+        while (it.hasNext()) {
+            ArrayList<Pair> list = result.get(dest);
+
+            AssertTrue(list.contains(dest));
+            AssertTrue(list.contains(searchMap.origin.city));
+        }
+    }
 }
